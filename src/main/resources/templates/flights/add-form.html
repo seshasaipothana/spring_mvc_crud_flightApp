@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Flight Form</title>
+    <style>
+        .error{
+            color: red;
+        }
+        body{
+            background-color:whitesmoke;
+        }
+    </style>
+</head>
+<body>
+<div class="container-lg">
+    <figure class="text-center">
+        <h3 class="display-6 mt-3 mb-2 text-decoration-underline" >Flight Add Form</h3>
+    </figure>
+    <form action= "#" th:action="@{/flight/save}" th:object="${flight}" method="POST" class="container-sm">
+        Flight Number(*) : <span th:if="${#fields.hasErrors('flightNo')}" th:errors="*{flightNo}" class="error"></span>
+        <input type="text" th:field= "*{flightNo}"class="form-control form-control-sm border border-0 mb-2"/>
+        Airlines Name(*) : <span th:if="${#fields.hasErrors('airlinesName')}" th:errors="*{airlinesName}" class="error"></span>
+        <input type="text" th:field= "*{airlinesName}"class="form-control form-control-sm border border-0 mb-2"/>
+        Starting Point(*) : <span th:if="${#fields.hasErrors('startingPoint')}" th:errors="*{startingPoint}" class="error"></span>
+        <input type="text" th:field="*{startingPoint}"class="form-control form-control-sm border border-0 mb-2"/>
+        Ending Point(*) : <span th:if="${#fields.hasErrors('endingPoint')}" th:errors="*{endingPoint}" class="error"></span>
+        <input type="text" th:field="*{endingPoint}"class="form-control form-control-sm border border-0 mb-2"/>
+        Ticket Price(*) : <span th:if="${#fields.hasErrors('ticketPrice')}" th:errors="*{ticketPrice}" class="error"></span>
+        <input type="text" th:field="*{ticketPrice}" class="form-control form-control-sm border border-0 mb-2"/>
+        <button type="submit" class="btn btn-sm btn-primary border border-0 mt-2">Save</button>
+    </form>
+    <hr>
+    <a th:href="@{/flight/list}" class="btn btn-link focus-ring">Back to all flights</a>
+</div>
+</body>
+</html>
